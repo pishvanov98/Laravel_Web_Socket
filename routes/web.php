@@ -24,8 +24,11 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/message',[\App\Http\Controllers\MessageController::class,'index']);
+    Route::get('/message',[\App\Http\Controllers\MessageController::class,'index'])->name('message');
     Route::post('/message',[\App\Http\Controllers\MessageController::class,'store'])->name('message.store');
+
+    Route::get('/users',[\App\Http\Controllers\LikeUserController::class,'index'])->name('users');
+    Route::post('/users/like',[\App\Http\Controllers\LikeUserController::class,'like'])->name('users.like');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
